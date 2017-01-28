@@ -121,27 +121,69 @@ print (question3(G))
 # SOLUTION 4
 import scipy as sp
 import pandas as pd
+def question4(T, node1, node2, root):
+    DF = create_df(T)
+    BTG = create_graph(DF)
 
-
+    if BTG != None:   
+        nodes = nx.dijkstra_path(BTG, node1, node2)
+    
+        shortest_paths_nodes = []
+        for element in nodes:
+            shortest_paths_nodes.append(nx.shortest_path(BTG, root, element))
+        
+        index = []
+        for path in shortest_paths_nodes:
+            index.append(len(path))
+        root_path_nodes = shortest_paths_nodes[min(index)]
+    
+        result = list(set(nodes) & set(root_path_nodes))
+        return result[0]
+    
+    else: 
+        print ("This graph is not a binary search tree")
+        return None        
+    
+def create_df(T):
+    BT = np.matrix(T)
+    sparse = sp.sparse.coo_matrix(BT, dtype=np.int32)
+    nodes = range(BT.shape[0])
+    DF = pd.DataFrame(sparse.toarray(), index=nodes, columns=nodes)
+    return DF
+    
+def create_graph(DF):
+    BTG = nx.Graph()
+    BTG.add_nodes_from(list(DF.index))
+    for i in range(DF.shape[0]):
+        column_label = DF.columns[i]
+        for j in range(DF.shape[1]):
+            row_label = DF.index[j]
+            node = DF.iloc[i,j]
+            if node == 1:
+                BTG.add_edge(column_label,row_label)
+    if nx.is_tree(BTG):
+        return BTG
+    else:
+        return None
 
 # TEST 4
-BT = np.matrix([[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-                [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
-                [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]])
+T = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+     [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+     [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
 node1, node2, root = (12, 14, 0)
-
+print(question4(T, node1, node2, root))
 
 # SOLUTION 5
 
