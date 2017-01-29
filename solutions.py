@@ -186,9 +186,92 @@ node1, node2, root = (12, 14, 0)
 print(question4(T, node1, node2, root))
 
 # SOLUTION 5
+def question5(l, m):
+    ll = create_linked_list(l)
+    return ll.getItemLeft(m)
 
+def create_linked_list(L):
+    linked_list = LinkedList()
+    for el in L:
+        linked_list.add(el)
+    return linked_list
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        
+    def __repr__(self):
+        return str(self.data)
 
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def add(self, data):
+        new_node = Node(data)
+        if self.head == None:
+            self.head = new_node
+        else:
+            current_node = self.head
+            while current_node.next:
+                current_node = current_node.next
+            current_node.next = new_node
+        
+    def getLength(self):
+        current = self.head
+        count = 1
+        while current.next != None:
+            count += 1
+            current = current.next
+        return count
+    
+    def getIndex(self, data):
+        current_node = self.head        
+        index = 1
+        while current_node.next:
+            if current_node.data == data:
+                break
+            else:     
+                current_node = current_node.next
+                index += 1
+        if (index == self.getLength()) & (current_node.data != data):
+            print ("This item is not in the list")
+            return None
+        return index
+    
+    def getIndexLeft(self, data):
+        if self.getIndex(data) == None:
+            return None
+        else: 
+            pos = int(self.getIndex(data))
+            end = int(self.getLength())
+            return end - pos + 1
+    
+    def getItem(self, position):
+        if position > self.getLength():
+            print ("This index is out of the list range")
+            return None
+        else:
+            current_node = self.head
+            while (current_node.next != None):
+                if self.getIndex(current_node.data) == position:
+                    break
+                else:
+                    current_node = current_node.next
+            return current_node.data
+        
+    def getItemLeft(self, position):
+        if position > self.getLength():
+            print ("This index is out of the list range")
+            return None
+        else:
+            end = int(self.getLength())
+            pos = end - position + 1
+            return self.getItem(pos)
+                    
 # TEST 5
-
-
+print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 3))
+print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 20))   
+print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 8))
+print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 100))
