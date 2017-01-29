@@ -1,4 +1,7 @@
 # SOLUTION 1
+import time
+start_time = time.time()
+
 import numpy as np
 def question1(s, t):
     (result, indices) = (True, [])
@@ -110,7 +113,10 @@ def create_wdictionary(W):
     return D
 
 # TEST 3
-# TEST 3
+GE = {'A': [('B', 2)],
+      'B': [('A', 2), ('C', 5)], 
+      'C': [('B', 5)]}
+print ("TEST 3.0, GRAPH G", question3(GE))
 G = {'A': [('B', 2), ('D', 6), ('G', 4), ('J', 3)],
      'B': [('A', 2), ('C', 5)], 
      'C': [('B', 5), ('E', 5)],
@@ -309,3 +315,5 @@ print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 3))
 print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 20))   
 print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 8))
 print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 100))
+
+print("--- %s seconds ---" % (time.time() - start_time))

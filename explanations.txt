@@ -7,7 +7,7 @@ The solution is based on the clear reasons:
 - applying functions for the indices [sum(), map(), abs(), .diff()] helps to find exactly anagrams: if sorted indices have the absolute values of differences 1 and therefore symbols from the second string stand consecutively in the first one then the function returns "True".
 
 Efficiency:
-
+Q((n^2)*m), where n - the length of s and m - the length of t.
 
 SOLUTION 2.
 
