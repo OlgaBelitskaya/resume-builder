@@ -1,18 +1,25 @@
 # SOLUTION 1
 import numpy as np
-
 def question1(s, t):
-    result = True
+    (result, indices) = (True, [])
+    
     for element in list(t):
-        boolean = element in list(s)
-        result = np.logical_and(result, boolean)
-    return result
-
+        boolean = element in (list(s))
+        if boolean == False: 
+            (result, indices) = (False,[])
+        else:
+            indices.append(list(s).index(element))
+            result = np.logical_and(result, boolean)
+    
+    if (result == True) & (sum(map(abs, np.diff(indices))) == len(indices) - 1):
+        return True
+    else: return False
+    
 # TEST 1
 s = "udacity"
 t = ["cit", "ad", "mod"]
 for el in t:
-    print (el, "in", s, ":", question1(s, el))
+    print (el + " in " + s + " : " + str(question1(s, el)))
     
 # SOLUTION 2
 # with helper functions

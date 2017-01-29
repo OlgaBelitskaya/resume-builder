@@ -1,7 +1,12 @@
 SOLUTION 1.
+The solution is based on the clear reasons:
 
+- creating the lists of elements from both strings list() is needed for analysis;
+- the use the boolean AND np.logical_and() gives the result "True" if all symbols from the second string are in the first one;
+- the list of indices of the first string for elements from the second string is made in the same loop;
+- applying functions for the indices [sum(), map(), abs(), .diff()] helps to find exactly anagrams: if sorted indices have the absolute values of differences 1 and therefore symbols from the second string stand consecutively in the first one then the function returns "True".
 
-
+Efficiency:
 
 
 SOLUTION 2.
