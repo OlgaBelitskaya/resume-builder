@@ -39,16 +39,6 @@ def question2(a):
         max_length = max(len(s) for s in result)
         longest_result = [s for s in result if len(s) == max_length]
         return longest_result[0]
-
-def search_palindrome_in(string):
-    palindromes = []
-    cuts = cut_collection(string)
-    for element in cuts:
-        substrings = sub_collection(element)
-        for el in substrings:
-            if is_palindrome(el):
-                palindromes.append(el)
-    return palindromes
     
 def is_palindrome(string):
     if string == "":
@@ -59,32 +49,27 @@ def is_palindrome(string):
         else:
             return False
         
-def sub_collection(string):
-    sub_string = list(string)
-    sub_collection = []
-    for i in range(len(sub_string)+1):
-        join_string = "".join(sub_string[:i])
-        sub_collection.append(join_string )   
-    sub_collection = sub_collection[2:len(sub_string)+1]
-    return sub_collection     
+def substrings(string):
+    for n in range(2, len(string)):
+        for start in range(0, len(string)-n+1):
+            yield string[start:start+n]
 
-def cut_collection(string):
-    cut_collection = []
-    current = string
-    for i in range(len(list(string))+1):
-        cut_collection.append(current)
-        cut_string = current[1:]
-        current = cut_string
-    cut_collection = cut_collection[:len(list(string))-1]
-    return cut_collection
+def search_palindrome_in(string):
+    palindromes = []
+    parts = substrings(string)
+    for element in parts:
+        if is_palindrome(element):
+            palindromes.append(element)
+    if is_palindrome(string):
+        palindromes.append(string)
+    return palindromes
 
 # TEST 2
 test_cases = ['', 'test', 'mart', 'letter', 'parallelogram', 'radarrotator']
 for test in test_cases:   
-#    print (list(test))
-#    print (string_collection(test))
-#    print (cut_collection(test))
-#    print (search_palindrome_in(test))
+    print (list(test))
+    print (list(substrings(test)))
+    print (search_palindrome_in(test))
     print (question2(test))
     
 # SOLUTION 3
