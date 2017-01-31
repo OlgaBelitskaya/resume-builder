@@ -1,8 +1,8 @@
-# SOLUTION 1
 import time
-start_time = time.time()
 
+# SOLUTION 1
 import numpy as np
+
 def question1(s, t):
     (result, indices) = (True, [])
     
@@ -19,10 +19,20 @@ def question1(s, t):
     else: return False
     
 # TEST 1
-s = "udacity"
-t = ["cit", "ad", "mod"]
-for el in t:
-    print (el + " in " + s + " : " + str(question1(s, el)))
+def print_question1():
+    s = "udacity"
+    t = ["cit", "ad", "mod"]
+    for el in t:
+        print (el + " in " + s + " : " + str(question1(s, el)))
+        
+start_time = time.time()
+print_question1()
+print("--- %s seconds ---" % (time.time() - start_time))
+
+# EXPECTED RESULT 1
+# cit in udacity : True
+# ad in udacity : True
+# mod in udacity : False
     
 # SOLUTION 2
 # with helper functions
@@ -65,13 +75,26 @@ def search_palindrome_in(string):
     return palindromes
 
 # TEST 2
-test_cases = ['', 'test', 'mart', 'letter', 'parallelogram', 'radarrotator']
-for test in test_cases:   
-    print (list(test))
-    print (list(substrings(test)))
-    print (search_palindrome_in(test))
-    print (question2(test))
+def print_question2():
+    test_cases = ['', 'test', 'mart', 'letter', 'parallelogram', 'radarrotator']
+    for test in test_cases:   
+#        print (list(test))
+#        print (list(substrings(test)))
+#        print (search_palindrome_in(test))
+        print (question2(test))
     
+start_time = time.time()
+print_question2()
+print("--- %s seconds ---" % (time.time() - start_time))   
+
+# EXPECTED RESULT 2
+#   (empty string)
+# None
+# a
+# ette
+# ara
+# rotator
+
 # SOLUTION 3
 import networkx as nx
 from collections import OrderedDict
@@ -98,48 +121,59 @@ def create_wdictionary(W):
     return D
 
 # TEST 3
-GE = {'A': [('B', 2)],
-      'B': [('A', 2), ('C', 5)], 
-      'C': [('B', 5)]}
-print ("TEST 3.0, GRAPH G", question3(GE))
-G = {'A': [('B', 2), ('D', 6), ('G', 4), ('J', 3)],
-     'B': [('A', 2), ('C', 5)], 
-     'C': [('B', 5), ('E', 5)],
-     'D': [('A', 6), ('E', 8)],
-     'E': [('C', 5), ('D', 8), ('F', 3)],
-     'F': [('E', 3), ('G', 7)],
-     'G': [('A', 4), ('F', 7), ('H', 8), ('I', 3)],
-     'H': [('G', 8)], 
-     'I': [('G', 3), ('J', 7)],
-     'J': [('A', 3), ('I', 7)]}
-print ("TEST 3.0, GRAPH G", question3(G))
-G1 = {'A': [('B', 2), ('D', 6), ('G', 4), ('J', 3)],
-      'B': [('A', 2), ('C', 5), ('L', 4)], 
-      'C': [('B', 5), ('E', 5), ('K', 8)],
-      'D': [('A', 6), ('E', 8)],
-      'E': [('C', 5), ('D', 8), ('F', 3)],
-      'F': [('E', 3), ('G', 7)],
-      'G': [('A', 4), ('F', 7), ('H', 8), ('I', 3)],
-      'H': [('G', 8), ('K', 5), ('O', 2)], 
-      'I': [('G', 3), ('J', 7), ('N', 4)],
-      'J': [('A', 3), ('I', 7)],
-      'K': [('C', 8), ('H', 5), ('L', 3)],  
-      'L': [('B', 4), ('K', 3), ('M', 2)],
-      'M': [('L', 2), ('N', 7)],
-      'N': [('I', 4), ('M', 7), ('O', 5)],
-      'O': [('N', 5), ('H', 2)]}
-print ("TEST 3.1, GRAPH G1", question3(G1))
+def print_question3():
+    GE = {'A': [('B', 2)],
+          'B': [('A', 2), ('C', 5)], 
+          'C': [('B', 5)]}
+    print ("TEST 3.0, GRAPH G", question3(GE))
+    G = {'A': [('B', 2), ('D', 6), ('G', 4), ('J', 3)],
+         'B': [('A', 2), ('C', 5)], 
+         'C': [('B', 5), ('E', 5)],
+         'D': [('A', 6), ('E', 8)],
+         'E': [('C', 5), ('D', 8), ('F', 3)],
+         'F': [('E', 3), ('G', 7)],
+         'G': [('A', 4), ('F', 7), ('H', 8), ('I', 3)],
+         'H': [('G', 8)], 
+         'I': [('G', 3), ('J', 7)],
+         'J': [('A', 3), ('I', 7)]}
+    print ("TEST 3.0, GRAPH G", question3(G))
+    G1 = {'A': [('B', 2), ('D', 6), ('G', 4), ('J', 3)],
+          'B': [('A', 2), ('C', 5), ('L', 4)], 
+          'C': [('B', 5), ('E', 5), ('K', 8)],
+          'D': [('A', 6), ('E', 8)],
+          'E': [('C', 5), ('D', 8), ('F', 3)],
+          'F': [('E', 3), ('G', 7)],
+          'G': [('A', 4), ('F', 7), ('H', 8), ('I', 3)],
+          'H': [('G', 8), ('K', 5), ('O', 2)], 
+          'I': [('G', 3), ('J', 7), ('N', 4)],
+          'J': [('A', 3), ('I', 7)],
+          'K': [('C', 8), ('H', 5), ('L', 3)],  
+          'L': [('B', 4), ('K', 3), ('M', 2)],
+          'M': [('L', 2), ('N', 7)],
+          'N': [('I', 4), ('M', 7), ('O', 5)],
+          'O': [('N', 5), ('H', 2)]}
+    print ("TEST 3.1, GRAPH G1", question3(G1))
+
+start_time = time.time()
+print_question3()
+print("--- %s seconds ---" % (time.time() - start_time))
+
+# EXPECTED RESULT 3
+# ('TEST 3.0, GRAPH G', OrderedDict([('A', [('B', 2)]), ('C', [('B', 5)])]))
+# ('TEST 3.0, GRAPH G', OrderedDict([('A', [('B', 2)]), ('C', [('E', 5)]), ('E', [('F', 3)]), ('G', [('H', 8)])]))
+# ('TEST 3.1, GRAPH G1', OrderedDict([('A', [('B', 2)]), ('B', [('L', 4)]), ('C', [('E', 5)]), 
+# ('E', [('F', 3)]), ('G', [('I', 3)]), ('H', [('K', 5)]), ('I', [('N', 4)]), ('K', [('L', 3)]), ('M', [('L', 2)])]))
 
 # SOLUTION 4
 import scipy as sp
 import pandas as pd
+
 def question4(T, node1, node2, root):
     DF = create_df(T)
     BTG = create_graph(DF)
 
     if BTG != None:   
-        nodes = nx.dijkstra_path(BTG, node1, node2)
-    
+        nodes = nx.shortest_path(BTG, node1, node2)   
         shortest_paths_nodes = []
         for element in nodes:
             shortest_paths_nodes.append(nx.shortest_path(BTG, root, element))
@@ -176,39 +210,50 @@ def create_graph(DF):
     if nx.is_tree(BTG):
         return BTG
     else:
-        return None
+        return None      
 
 # TEST 4
-T0 = [[0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0]]
-print("T0", question4(T0, 2, 4, 0))
-T = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-     [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
-     [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
-     [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
-print('The least common ancestor between 12 and 14 for T (root 0)', question4(T, 12, 14, 0))
-T1 = [[0, 1, 1, 0, 0, 0, 0],
-      [1, 0, 0, 1, 1, 0, 0],
-      [1, 0, 0, 0, 0, 1, 1],
-      [0, 1, 0, 0, 0, 0, 0],
-      [0, 1, 0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0]]     
-print('The least common ancestor between 2 and 4 for T1 (root 0)', question4(T1, 2, 4, 0))
+def print_question4():
+    T0 = [[0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0]]
+    print("T0", question4(T0, 2, 4, 0))
+    T = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0],
+         [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+         [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+         [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+         [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
+    print('The least common ancestor between 12 and 14 for T (root 0)', question4(T, 12, 14, 0))
+    T1 = [[0, 1, 1, 0, 0, 0, 0],
+          [1, 0, 0, 1, 1, 0, 0],
+          [1, 0, 0, 0, 0, 1, 1],
+          [0, 1, 0, 0, 0, 0, 0],
+          [0, 1, 0, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0, 0, 0],
+          [0, 0, 1, 0, 0, 0, 0]]     
+    print('The least common ancestor between 2 and 4 for T1 (root 0)', question4(T1, 2, 4, 0))
+
+start_time = time.time()
+print_question4()
+print("--- %s seconds ---" % (time.time() - start_time))
+
+# EXPECTED RESULT 4
+# This graph is not a binary search tree
+# ('T0', None)
+# ('The least common ancestor between 12 and 14 for T (root 0)', 2)
+# ('The least common ancestor between 2 and 4 for T1 (root 0)', 0)
 
 # SOLUTION 5
 def question5(l, m):
@@ -296,9 +341,20 @@ class LinkedList:
             return self.getItem(pos)
                     
 # TEST 5
-print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 3))
-print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 20))   
-print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 8))
-print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 100))
+def print_question5():
+    print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 3))
+    print (question5(['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh'], 20))   
+    print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 8))
+    print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 100))
 
+start_time = time.time()
+print_question5()
 print("--- %s seconds ---" % (time.time() - start_time))
+
+# EXPECTED RESULT 5
+# fff
+# This index is out of the list range
+# None
+# 4
+# This index is out of the list range
+# None

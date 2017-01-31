@@ -1,3 +1,17 @@
+INTRODUCTION
+At first, I place several important links for the project and comments.
+
+FULL VERSION: 
+https://github.com/OlgaBelitskaya/resume-builder/blob/master/Udacity_Technical_Interview_Practice_Project.ipynb
+
+CHECKING SOLUTIONS FOR PYTHON 2: 
+https://github.com/OlgaBelitskaya/resume-builder/blob/master/Udacity_Technical_Interview_Project_Code.ipynb
+
+In the file "solutions.py" there were added the lines to estimate the time of every solution.
+
+SOLUTIONS
+The next part is explanations for solutions.
+
 SOLUTION 1.
 The solution is based on the clear reasons:
 
@@ -6,8 +20,7 @@ The solution is based on the clear reasons:
 - the list of indices of the first string for elements from the second string is made in the same loop;
 - applying functions for the indices [sum(), map(), abs(), .diff()] helps to find exactly anagrams: if sorted indices have the absolute values of differences 1 and therefore symbols from the second string stand consecutively in the first one then the function returns "True".
 
-Efficiency:
-Q((n^2)*m), where n - the length of s and m - the length of t.
+Efficiency: Q((n^2)*m), where n - the length of s and m - the length of t.
 
 SOLUTION 2.
 In this case, the solution includes several helper functions. 
@@ -15,20 +28,29 @@ It's the most convenient way for me to build every step as a separate function i
 For all helper functions, I try to find the easiest and quickest way for every concrete operation.
 The final function indicates that the word 'a' consists of one letter and can be considered as a palindrome.
 
-Efficiency:
-Q(  ), where n - the length of a.
+Efficiency: Q(n*m*p), where n - the length of a, m - the length of the list with string parts, p - the length if the palindrome list.
 
 SOLUTION 3.
+I have chosen the package Networkx as an optimal decision in this case. It makes my task very simple.
+I need only to create a graph, apply the function minimum_spanning_tree, and convert the result into the certain format of dictionary.
 
-
-
-
+Efficiency: O(n*m*log n), where n - the number of nodes and m - the number of edges.
 
 SOLUTION 4.
+The first step in this solution (create a data frame from the given matrix) before building the graph is not so needed. I've done it just for training.
+The tree adheres to all BST properties, so the path between two certain nodes is unique, we can apply the function networkx.shortest_path() for this goal and create the path between node1 and node2.
+To solve the problem in general it's necessary to find the shortest path between the root and this generated path.
+By properties of the binary search tree, the point of intersection of the two found paths will be the solution.
+For visual control the result I've displayed some graphs in the full version of the program.
 
-
-
-
+Efficiency: Q(  ), where n - the length of .
 
 SOLUTION 5.
+Here I am a bit remade the condition of the original problem. This wording seems to me to be more precise.
+Created class consists of a set of functions that allow to find a specific element from the end of the linked list, and extract other information about a particular linked list.
+In the full version of the project, I did a lot more procedures within a given class. They do not need to find a given item, and were built for training.
 
+Efficiency: Q(n), where n - the length of the linked list.
+
+CONCLUSION
+Such problems must be solved continuously for advanced training. During the project, I have created a few extra notebooks for exercises and going to collect challenges and references therein.
