@@ -26,7 +26,7 @@ def print_question1():
         print (el + " in " + s + " : " + str(question1(s, el)))
         
 start_time = time.time()
-print_question1()
+%time print_question1()
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # EXPECTED RESULT 1
@@ -84,7 +84,7 @@ def print_question2():
         print (question2(test))
     
 start_time = time.time()
-print_question2()
+%time print_question2()
 print("--- %s seconds ---" % (time.time() - start_time))   
 
 # EXPECTED RESULT 2
@@ -155,7 +155,7 @@ def print_question3():
     print ("TEST 3.1, GRAPH G1", question3(G1))
 
 start_time = time.time()
-print_question3()
+%time print_question3()
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # EXPECTED RESULT 3
@@ -246,7 +246,7 @@ def print_question4():
     print('The least common ancestor between 2 and 4 for T1 (root 0)', question4(T1, 2, 4, 0))
 
 start_time = time.time()
-print_question4()
+%time print_question4()
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # EXPECTED RESULT 4
@@ -348,7 +348,7 @@ def print_question5():
     print (question5([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 100))
 
 start_time = time.time()
-print_question5()
+%time print_question5()
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # EXPECTED RESULT 5
