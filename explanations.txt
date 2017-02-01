@@ -22,9 +22,8 @@ The solution is based on the clear reasons:
 if sorted indices have the absolute values of differences 1 and therefore symbols from the second string 
 stand consecutively in the first one then the function returns "True".
 
-Efficiency: Q((n^2)*m), 
-                                where n - the length of s and m - the length of t.
-Space complexity: Q((n^2)*m),
+Efficiency: 𝒬(n^2⋆m), where n - the length of s and m - the length of t.                                             
+Space complexity: 𝒬(N⋆M), where N=len(s), M=len(t). 
 
 SOLUTION 2.
 In this case, the solution includes several helper functions. 
@@ -32,20 +31,17 @@ It's the most convenient way for me to build every step as a separate function i
 For all helper functions, I try to find the easiest and quickest way for every concrete operation.
 The final function indicates that the word 'a' consists of one letter and can be considered as a palindrome.
 
-Efficiency: Q(n*m*p), 
-                              where n - the length of a, 
-                              m - the length of the list with string parts, 
-                              p - the length if the palindrome list.
-Space complexity: Q(n*m*p),
+Efficiency: 𝒬(n⋆m⋆p), 
+where n - the length of a, m - the length of the list with string parts, p - the length if the palindrome list.
+Space complexity: 𝒬(N^2), where N=len(a).
 
 SOLUTION 3.
 I have chosen the package Networkx as an optimal decision in this case. It makes my task very simple.
 I need only to create a graph, apply the function minimum_spanning_tree, and convert the result 
 into the certain format of dictionary.
 
-Efficiency: O(n*m*log n), 
-                               where n - the number of nodes and m - the number of edges.
-Space complexity: Q((n^2)*m),
+Efficiency:  𝒬(n⋆m⋆log n), where n - the number of nodes and m - the number of edges.
+Space complexity:  𝒬(N⋆M), where N=len(n), M=len(m).
 
 SOLUTION 4.
 The graph was created from the matrix so that the root has the index 0 and 
@@ -55,9 +51,8 @@ We know exactly the root index, so we can only use three variables.
 Now it is possible to find a path between two given nodes in the specified graph and
 determine in this path the node with the minimum index. This will be the required number.
 
-Efficiency:  O(n^2), 
-                               where n - the number of rows (or columns) in the initial matrix.
-Space complexity: Q(n^2),
+Efficiency:  𝒬(n^2), where n - the number of rows (or columns) in the initial matrix.
+Space complexity:  𝒬(N), where N=len(n).
 
 SOLUTION 5.
 Here I am a bit remade the condition of the original problem. This wording seems to me to be more precise.
@@ -66,9 +61,8 @@ and extract other information about a particular linked list.
 In the full version of the project, I did a lot more procedures within a given class. 
 They do not need to find a given item, and were built for training.
 
-Efficiency: Q(n), 
-                              where n - the length of the linked list.
-Space complexity: Q(n),
+Efficiency:  𝒬(n), where n - the length of the linked list l.
+Space complexity:  𝒬(N), N = len(l).
 
 CONCLUSION
 Such problems must be solved continuously for advanced training. During the project, I have created a few extra notebooks 
