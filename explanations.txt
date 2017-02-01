@@ -48,17 +48,16 @@ Efficiency: O(n*m*log n),
 Space complexity: Q((n^2)*m),
 
 SOLUTION 4.
-The first step in this solution (create a data frame from the given matrix) before building the graph is not so needed. 
-I've done it just for training.
-The tree adheres to all BST properties, so the path between two certain nodes is unique, 
-we can apply the function networkx.shortest_path() for this goal and create the path between node1 and node2.
-To solve the problem in general it's necessary to find the shortest path between the root and this generated path.
-By properties of the binary search tree, the point of intersection of the two found paths will be the solution.
-For visual control the result I've displayed some graphs in the full version of the program.
+The graph was created from the matrix so that the root has the index 0 and 
+all other nodes have received the numbers in order.
+Created graph was tested for the number of edges per node (1 to 3) and whether or not it is a tree.
+We know exactly the root index, so we can only use three variables.
+Now it is possible to find a path between two given nodes in the specified graph and
+determine in this path the node with the minimum index. This will be the required number.
 
-Efficiency:  O(n^2*(log n)^2), 
+Efficiency:  O(n^2), 
                                where n - the number of rows (or columns) in the initial matrix.
-Space complexity: Q(n^4),
+Space complexity: Q(n^2),
 
 SOLUTION 5.
 Here I am a bit remade the condition of the original problem. This wording seems to me to be more precise.

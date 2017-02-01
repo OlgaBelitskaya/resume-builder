@@ -165,52 +165,23 @@ print("--- %s seconds ---" % (time.time() - start_time))
 # ('E', [('F', 3)]), ('G', [('I', 3)]), ('H', [('K', 5)]), ('I', [('N', 4)]), ('K', [('L', 3)]), ('M', [('L', 2)])]))
 
 # SOLUTION 4
-import scipy as sp
-import pandas as pd
-
-def question4(T, node1, node2, root):
-    DF = create_df(T)
-    BTG = create_graph(DF)
-
-    if BTG != None:   
-        nodes = nx.shortest_path(BTG, node1, node2)   
-        shortest_paths_nodes = []
-        for element in nodes:
-            shortest_paths_nodes.append(nx.shortest_path(BTG, root, element))
-        
-        index = []
-        for path in shortest_paths_nodes:
-            index.append(len(path))
-        root_path_nodes = shortest_paths_nodes[min(index)]
-    
-        result = list(set(nodes) & set(root_path_nodes))
-        return result[0]
-    
-    else: 
-        print ("This graph is not a binary search tree")
-        return None        
-    
-def create_df(T):
-    BT = np.matrix(T)
-    sparse = sp.sparse.coo_matrix(BT, dtype=np.int32)
-    nodes = range(BT.shape[0])
-    DF = pd.DataFrame(sparse.toarray(), index=nodes, columns=nodes)
-    return DF
-    
-def create_graph(DF):
-    BTG = nx.Graph()
-    BTG.add_nodes_from(list(DF.index))
-    for i in range(DF.shape[0]):
-        column_label = DF.columns[i]
-        for j in range(DF.shape[1]):
-            row_label = DF.index[j]
-            node = DF.iloc[i,j]
-            if node == 1:
-                BTG.add_edge(column_label,row_label)
-    if nx.is_tree(BTG):
-        return BTG
+def question4(T, node1, node2):
+    BSTG=nx.from_numpy_matrix(np.matrix(T))
+    if (nx.is_tree(BSTG) & check_sum(T)):
+        path = nx.all_simple_paths(BSTG, node1,  node2)
+        return min(list(path)[0])
     else:
-        return None      
+        print ("This graph is not a binary search tree")
+        return None 
+
+def check_sum(T):
+    result = True
+    for element in T:
+        if sum(element) in [1, 2, 3]:
+            result = np.logical_and(result, True)
+        else:
+            return False
+    return result       
 
 # TEST 4
 def print_question4():
@@ -219,7 +190,7 @@ def print_question4():
           [0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0]]
-    print("T0", question4(T0, 2, 4, 0))
+    print("T0", question4(T0, 2, 4))
     T = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -235,7 +206,7 @@ def print_question4():
          [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
-    print('The least common ancestor between 12 and 14 for T (root 0)', question4(T, 12, 14, 0))
+    print('The least common ancestor between 12 and 14 for T (root 0)', question4(T, 12, 14))
     T1 = [[0, 1, 1, 0, 0, 0, 0],
           [1, 0, 0, 1, 1, 0, 0],
           [1, 0, 0, 0, 0, 1, 1],
@@ -243,7 +214,7 @@ def print_question4():
           [0, 1, 0, 0, 0, 0, 0],
           [0, 0, 1, 0, 0, 0, 0],
           [0, 0, 1, 0, 0, 0, 0]]     
-    print('The least common ancestor between 2 and 4 for T1 (root 0)', question4(T1, 2, 4, 0))
+    print('The least common ancestor between 2 and 4 for T1 (root 0)', question4(T1, 2, 4))
 
 start_time = time.time()
 %time print_question4()
