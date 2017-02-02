@@ -62,7 +62,7 @@ In the full version of the project, I did a lot more procedures within a given c
 They do not need to find a given item, and were built for training.
 
 Efficiency:  𝒬(n), where n - the length of the linked list l.
-Space complexity:  𝒬(N), N = len(l).
+Space complexity:  𝒬(1).
 
 CONCLUSION
 Such problems must be solved continuously for advanced training. During the project, I have created a few extra notebooks 
